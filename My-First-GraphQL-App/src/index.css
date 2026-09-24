@@ -1,0 +1,10 @@
+@import "/node_modules/primeflex/primeflex.css";
+
+a {
+    display: inline-block;
+    text-decoration: none;
+}
+
+li {
+    list-style: none;
+}
