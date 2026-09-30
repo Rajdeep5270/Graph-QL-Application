@@ -2,6 +2,7 @@ import { useMutation, useQuery } from "@apollo/client/react"
 import { DELETE_BOOK } from "../Query/deleteBook.query";
 import { useState } from "react";
 import { FETCH_ALL_BOOK } from "../Query/fetchAllBook.query";
+import Table from "../Components/table";
 
 export default function ViewAllBookPage() {
 
@@ -44,10 +45,21 @@ export default function ViewAllBookPage() {
         }
     }
 
+    const onHandleDataFromChild = (operationId: string) => {
+        if (operationId.includes("Delete")) {
+            operationId = operationId.slice(7, operationId.length);
+            onHandleDelete(operationId)
+        };
+    }
+
+    const tableHeading = ['No', 'Name', 'Price', 'Actions'];
+    const dataKeys = ['name', 'price'];
+    const actionButtons = ['Delete'];
+
     return <>
         <h2>View Book Page</h2>
 
-        <table border={10}>
+        {/* <table border={10}>
             <thead>
                 <tr>
                     <th>No</th>
@@ -70,6 +82,8 @@ export default function ViewAllBookPage() {
                     </tr>
                 })}
             </tbody>
-        </table>
+        </table> */}
+
+        <Table uiList={tableHeading} dataKeysList={dataKeys} dataList={allBooks} onSendOperationId={onHandleDataFromChild} buttons={actionButtons} />
     </>
 }

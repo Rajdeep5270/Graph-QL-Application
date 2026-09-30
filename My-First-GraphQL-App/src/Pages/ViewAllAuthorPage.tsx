@@ -3,6 +3,7 @@ import { FETCH_ALL_AUTHOR } from "../Query/fetchAllAuthor.query"
 import { DELETE_AUTHOR } from "../Query/deleteSingleAuthor";
 import { useState } from "react";
 import { useNavigate } from "react-router";
+import Table from "../Components/table";
 
 export default function ViewAllAuthorPage() {
 
@@ -43,10 +44,26 @@ export default function ViewAllAuthorPage() {
         navigate('/edit-author-page', { state: editId });
     }
 
+    const onHandleDataFromChild = (operationId: string) => {
+        if (operationId.includes('Edit')) {
+            operationId = operationId.slice(5, operationId.length);
+            onHandleEdit(operationId);
+            return
+        } else {
+            operationId = operationId.slice(7, operationId.length);
+            onHandleDelete(operationId);
+            return;
+        }
+    }
+
+    const tableHeading = ['No', 'Name', 'Actions'];
+    const dataKeys = ['author_name'];
+    const actionButtons = ['Edit', 'Delete'];
+
     return <>
         <h2>View All Author</h2>
 
-        <table border={10}>
+        {/* <table border={10}>
             <thead>
                 <tr>
                     <th>No</th>
@@ -66,6 +83,8 @@ export default function ViewAllAuthorPage() {
                     </tr>
                 })}
             </tbody>
-        </table>
+        </table> */}
+
+        <Table uiList={tableHeading} dataKeysList={dataKeys} dataList={allAuthor} onSendOperationId={onHandleDataFromChild} buttons={actionButtons} />
     </>
 }
