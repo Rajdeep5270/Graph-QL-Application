@@ -27,9 +27,6 @@ import { Author } from './author/entities/author.entity';
       driver: ApolloDriver,
       autoSchemaFile: join(process.cwd(), 'src/schema.graphql'),
       sortSchema: true,
-      subscriptions: {
-        'graphql-ws': true
-      }
     }),
     BookModule,
     AuthorModule

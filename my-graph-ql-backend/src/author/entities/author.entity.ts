@@ -14,6 +14,6 @@ export class Author {
   author_name: string;
 
   @OneToMany(() => Book, (book) => book.author, { cascade: true })
-  @Field(() => [Book])
+  @Field(() => [Book], { nullable: true })
   books: Book[]
 }

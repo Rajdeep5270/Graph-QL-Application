@@ -1,4 +1,4 @@
-import { Link, Outlet } from "react-router";
+import { NavLink, Outlet } from "react-router";
 
 export default function SidebarLayout() {
     return <>
@@ -8,8 +8,11 @@ export default function SidebarLayout() {
                     <h2 className="my-0">Sidebar</h2>
                     <nav>
                         <ul>
-                            <li><Link to="/" className="text-1xl text-500 border-2 px-4 py-1 my-2">All Author</Link></li>
-                            <li><Link to="/" className="text-1xl text-500 border-2 px-4 py-1 my-2">Add Author</Link></li>
+                            <li><NavLink to="/" className={({ isActive }) => `text-1xl text-500 border-2 px-4 py-1 my-2 ${(isActive) ? "bg-black-alpha-90 text-white-alpha-90" : ""}`}>All Author & Books</NavLink></li>
+                            <li><NavLink to="/view-all-author" className={({ isActive }) => `text-1xl text-500 border-2 px-4 py-1 my-2 ${(isActive) ? "bg-black-alpha-90 text-white-alpha-90" : ""}`}>All Author</NavLink></li>
+                            <li><NavLink to="/add-author" className={({ isActive }) => `text-1xl text-500 border-2 px-4 py-1 my-2 ${(isActive) ? "bg-black-alpha-90 text-white-alpha-90" : ""}`}>Add Author</NavLink></li>
+                            <li><NavLink to="/view-all-book" className={({ isActive }) => `text-1xl text-500 border-2 px-4 py-1 my-2 ${(isActive) ? "bg-black-alpha-90 text-white-alpha-90" : ""}`}>All Book</NavLink></li>
+                            <li><NavLink to="/add-book" className={({ isActive }) => `text-1xl text-500 border-2 px-4 py-1 my-2 ${(isActive) ? "bg-black-alpha-90 text-white-alpha-90" : ""}`}>Add Book</NavLink></li>
                         </ul>
                     </nav>
                 </div>

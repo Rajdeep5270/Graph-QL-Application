@@ -24,7 +24,7 @@ export class BookResolver {
         return this.bookService.addBook(input);
     }
 
-    @Mutation(() => Book, { name: 'updateBook' })
+    @Mutation(() => Book, { name: 'updateBook', nullable: true })
     updateBook(
         @Args('editId', { type: () => String }) editId: string,
         @Args('newData', { type: () => UpdateBookInput }) newData: UpdateBookInput
@@ -32,7 +32,7 @@ export class BookResolver {
         return this.bookService.updateBook(editId, newData);
     }
 
-    @Mutation(() => Book, { name: 'deleteBook' })
+    @Mutation(() => Book, { name: 'deleteBook', nullable: true })
     deleteBook(@Args('deleteId', { type: () => String }) deleteId: string) {
         return this.bookService.deleteBook(deleteId);
     }

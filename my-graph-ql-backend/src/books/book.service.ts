@@ -53,6 +53,8 @@ export class BookService {
     async deleteBook(deletedId: string) {
         const book = await this.bookRepo.findOneByOrFail({ id: deletedId });
 
-        return this.bookRepo.remove(book);
+        this.bookRepo.remove(book);
+
+        return book;
     }
 }
